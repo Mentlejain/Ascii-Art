@@ -35,7 +35,7 @@ public class AsciiArt {
 
         Graphics2D graphics = (Graphics2D) g;
         graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics.drawString(art_text, 0, 100);
+        graphics.drawString(art_text, 10, 100);
 
         for (int y=0;y<height;y++)
         {
