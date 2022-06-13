@@ -8,6 +8,9 @@ import java.io.IOException;
 public class AsciiArt {
     public static void main(String[] args) throws IOException
     {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int)screenSize.getWidth();
+        int height = (int)screenSize.getHeight()/6;
         String line = "";
         String splitBy = ",";
         try
@@ -15,8 +18,8 @@ public class AsciiArt {
             BufferedReader br = new BufferedReader(new FileReader("EASCII characters.csv"));
             while ((line = br.readLine()) != null) {
                 String[] eascii = line.split(splitBy);
-                int img_width = findImageWidth(500, eascii[0], "Arial");
-                PrintASCII(eascii[0], img_width, 500, "*");
+                int img_width = findImageWidth(height, eascii[0], "Arial");
+                PrintASCII(eascii[0], img_width, height, "*");
                 System.out.println(eascii[1]);
                 System.out.println();
             }
@@ -28,14 +31,15 @@ public class AsciiArt {
     }
     static void PrintASCII(String art_text,int width, int height, String symbol)
     {
+
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics g = image.getGraphics();
-        Font font = new Font("Arial", Font.BOLD, 50);
+        Font font = new Font("Arial", Font.BOLD, 30);
         g.setFont(font);
 
         Graphics2D graphics = (Graphics2D) g;
-        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics.drawString(art_text, 10, 100);
+        //graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        graphics.drawString(art_text, 10, height/4);
 
         for (int y=0;y<height;y++)
         {
